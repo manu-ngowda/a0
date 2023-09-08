@@ -1,0 +1,166 @@
+1)  Program to read a string of 4 characters from the user. Convert every character in the string to its next alphabet.
+st=input('Enter a string of 4 char:')
+for i,ch in enumerate(st):
+    if(i==4):
+        break
+    if(ch=='Z'):
+        ch='A'
+    elif(ch=='z'):
+        ch='a'
+    else:
+        ch=chr(ord(ch)+1)
+    print(ch,end='')
+print()
+
+
+2)  Write a python program to simulate working of simple calculator. 
+print("Enter operand 1, operator (+, -, /, *), and operand 2 respectively:")
+a = int(input())
+operator = input()
+b = int(input())
+
+if operator == '+':
+    result = a + b
+    print("Result:", result)
+elif operator == '-':
+    result = a - b
+    print("Result:", result)
+elif operator == '*':
+    result = a * b
+    print("Result:", result)
+elif operator == '/':
+    if b == 0:
+        print("Cannot divide by zero")
+    else:
+        result = a / b
+        print("Result:", result)
+else:
+    print("Invalid operator")
+
+
+
+
+
+
+
+3)  Write a program to 
+i) Shuffle the deck of cards. 
+ii)To choose one single card from deck.
+ iii)To create a random sample of size 2 from the available deck of cards.
+import random
+ranks=['Ace',2,3,4,5,6,7,8,9,10,'Jack','Queen','King']
+suits=['Hearts','Club','Spades','Daimond']
+deck=[(r,s) for r in ranks for s in suits]
+random.shuffle(deck)
+print(len(deck))
+choose=random.choice(deck)
+print(choose)
+
+samp=random.sample(deck,2)
+print(samp)
+
+4) Write a Program to print the following pattern. 
+A
+B C D
+E F G H I 
+J K L M N O P 
+Q R S T U V W X Y
+k=0
+str=''
+for i in range(5):
+    for j in range(2*i+1):
+        print(chr(65+k)+' ',end='')
+        k+=1
+    print()
+
+5) Given a list of strings, count and print the number of strings where the string length is 2 or more & the 1st & last characters are same.  
+ls={'rear','oppo','came','quoq','wedop'}
+ls2=[]
+for str in ls:
+    if(len(str)>1 and str[0]==str[-1]):
+        ls2.append(str)
+print(ls2)
+print(len(ls2))
+
+6) Write a python program to accept a sequence of whitespace separated words as input and prints the words after removing all duplicate words and sorting them alphanumerically.
+st=input("Enter a sentence:")
+ls = st.split()
+st =set(ls)
+ls=list(st)
+ls.sort()
+strn = ' '.join(ls)  
+print(strn)     
+
+7) Solve the following using Recursion:
+a) find the length of a string
+b) find the smallest element in a list
+def strlength(str):
+    if(str==''):
+        return 0
+    else:
+        return strlength(str[1:])+1
+print(strlength('hey techies!'))
+
+def small(ls):
+    if len(ls)==1:
+        return ls[0]
+    else:
+        min=small(ls[1:])
+        return min if min<ls[0] else ls[0]
+ 
+print(small([1,2,3,34,4,-5,-7,0]))
+
+8) Create a module called Util.py. Add functions for the following into this file.
+a) convert temperature in Centigrade to Fahrenheit
+b) convert temperature in Fahrenheit to Centigrade.
+F= 9C/5 +32
+def celtofah(cel):
+    fah = (cel * 9/5) + 32
+    return fah
+def fahtocel(fah):
+    cel = (fah - 32) * 5/9
+    return cel
+
+
+9) Create a class bill. Bill should contain date, customer name and details of # of items - name,rate, quantity, total amount. Make a bill and display it.
+class Bill:
+    def __init__ (self,name,date):
+        self.name=name
+        self.date=date
+        self.items=[]
+    def additem(self, inm,rt,no):
+        amt=rt*no
+        self.items.append((inm,rt,no,amt))
+        
+    def displaybill(self):
+        total=0
+        print(self.date+"\n"+self.name)
+        print('----------------------------------------------------')
+        print('Item\tRate\tQuantity\tAmount')
+        print('----------------------------------------------------')
+        for vals in self.items:
+            inm,rt,no,amt=vals
+            print(f'{inm}\t{rt}\t{no}\t\t{amt}')
+            total+=amt
+        print('----------------------------------------------------')
+        print(f'Total amount:{total}')
+        print('----------------------------------------------------')
+        
+c1=Bill("AAAAA",'23-08-2023')
+c1.additem("Item 1", 10.00, 3)
+c1.additem("Item 2", 5.50, 2)
+c1.additem("Item 3", 8.75, 4)
+c1.displaybill()
+
+10) Python program to copy odd lines from one file to another file.
+inf="input.txt"
+outf='output.txt'
+
+with open (inf,'r') as file:
+    lines=file.readlines()
+with open (outf,'w') as file:
+    for i,line in enumerate(lines):
+        if((i+1)%2==1):
+            file.writelines(line)
+
+
